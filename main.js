@@ -103,9 +103,11 @@ app.post("/web-data", async function(req, res) {
             });
 
             console.log('message is sent', info.messageId);
-        }
 
+        }
         await sendMail();
+
+        return res.status(200).json({})
     } catch(e) {
         await bot.answerWebAppQuery(queryId, {
             type: "article",
@@ -113,6 +115,7 @@ app.post("/web-data", async function(req, res) {
             title: "Ошибка записи",
             input_message_content: {message_text: `Не удалось оформить запись`}
         })
+        return res.status(500).json({})
     }
 })
 
