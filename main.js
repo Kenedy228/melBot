@@ -73,7 +73,7 @@ function createKeyboard(...args) {
     });
 }
 
-app.get("/web-data", async function(req, res) {
+app.post("/web-data", async function(req, res) {
     const {name, phone, comment, queryId} = req.body;
 
     try {
