@@ -66,7 +66,7 @@ function createKeyboard(...args) {
 }
 
 app.get("/web-data", async function(req, res) {
-    const {name, doctor, phone, comment, queryId} = req.body;
+    const {name, phone, comment, queryId} = req.body;
 
     try {
         await bot.answerWebAppQuery(queryId, {
@@ -91,7 +91,7 @@ app.get("/web-data", async function(req, res) {
                 from: "TELEGRAM BOT <zhuravleffdanilka2303@gmail.com>",
                 to: "zhuravleffdanilka2004@mail.ru",
                 subject: 'запись на прием',
-                text: `ФИО пациента: ${name}\nДоктор: ${doctor}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
+                text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
             });
 
             console.log('message is sent', info.messageId);
