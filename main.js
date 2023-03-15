@@ -3,6 +3,7 @@ const db = require("./db");
 const Nodemailer = require("nodemailer");
 
 const token = "5946888409:AAEmPbBvsoBEf-IWALp3iBWaThjS33G7aJQ";
+const url = "https://famous-sfogliatella-4b46e3.netlify.app/";
 
 const test = {
     reply_markup: {
