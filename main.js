@@ -12,10 +12,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.listen(port, () => {
-    console.log("Server started at port " + port);
-});
-
 const test = {
     reply_markup: {
         inline_keyboard:[
@@ -118,6 +114,10 @@ app.post("/web-data", async function(req, res) {
         return res.status(500).json({})
     }
 })
+
+app.listen(port, () => {
+    console.log("Server started at port " + port);
+});
 
 start();
 
