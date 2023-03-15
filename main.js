@@ -18,7 +18,9 @@ app.listen(port, () => {
 
 const test = {
     reply_markup: {
-        inline_keyboard: [{text: "Заполните форму", web_app: {url}}]
+        inline_keyboard:[
+            [{text: "Заполните форму", web_app: {url}}]
+        ]
     }
 }
 
