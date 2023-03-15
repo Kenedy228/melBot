@@ -16,6 +16,12 @@ app.listen(port, () => {
     console.log("Server started at port " + port);
 });
 
+const test = {
+    reply_markup: {
+        inline_keyboard: [{text: "Заполните форму", web_app: {url}}]
+    }
+}
+
 const bot = new Bot(token, {polling: true});
 
 bot.setMyCommands([
@@ -51,7 +57,7 @@ function start() {
         }
 
         if (msg.data === "appointment") {
-            bot.sendMessage(chatID, "Заполните форму по ссылке", createKeyboard([{text: "Заполните форму", web_app: {url}}]))
+            bot.sendMessage(chatID, "Заполните форму по ссылке", test)
         }
 
     })
