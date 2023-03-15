@@ -80,28 +80,28 @@ app.post("/web-data", async function(req, res) {
             input_message_content: {message_text: `Поздравляем, вы записались!\nНаш менеджер перезвонит Вам в ближайшее время!`}
         })
 
-        async function sendMail() {
-            let transporter = Nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                post: 465,
-                secure: true,
-                auth: {
-                    user: "zhuravleffdanilka2303@gmail.com",
-                    pass: "jmecgiapwyxilrwz"
-                }
-            });
+        // async function sendMail() {
+        //     let transporter = Nodemailer.createTransport({
+        //         host: "smtp.gmail.com",
+        //         post: 465,
+        //         secure: true,
+        //         auth: {
+        //             user: "zhuravleffdanilka2303@gmail.com",
+        //             pass: "jmecgiapwyxilrwz"
+        //         }
+        //     });
+        //
+        //     let info = await transporter.sendMail({
+        //         from: "TELEGRAM BOT <zhuravleffdanilka2303@gmail.com>",
+        //         to: "zhuravleffdanilka2004@mail.ru",
+        //         subject: 'запись на прием',
+        //         text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
+        //     });
+        //
+        //     console.log('message is sent', info.messageId);
 
-            let info = await transporter.sendMail({
-                from: "TELEGRAM BOT <zhuravleffdanilka2303@gmail.com>",
-                to: "zhuravleffdanilka2004@mail.ru",
-                subject: 'запись на прием',
-                text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
-            });
-
-            console.log('message is sent', info.messageId);
-
-        }
-        await sendMail();
+        // }
+        // await sendMail();
 
         return res.status(200).json({})
     } catch(e) {
