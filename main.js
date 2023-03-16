@@ -5,15 +5,14 @@ const Nodemailer = require("nodemailer");
 const token = "5946888409:AAEmPbBvsoBEf-IWALp3iBWaThjS33G7aJQ";
 const url = "https://famous-sfogliatella-4b46e3.netlify.app/";
 
-
 const bot = new Bot(token, {polling: true});
 
 bot.setMyCommands([
-    {command: "/appointment", description: "appointment"},
-    {command: "/doctors", description: "doctors"},
-    {command: "/prices", description: "prices"},
-    {command: "/discounts", description: "discounts"},
-    {command: "/info", description: "info"}
+    {command: "/appointment", description: "Оставить заявку на прием"},
+    {command: "/doctors", description: "Наши врачи"},
+    {command: "/prices", description: "Цены на услуги"},
+    {command: "/discounts", description: "Акции и скидки"},
+    {command: "/info", description: "Информация о чат-боте"}
 ])
 
 function start() {
@@ -25,14 +24,9 @@ function start() {
         }
 
         if (msg.web_app_data.data) {
-            try{
-                const newData = JSON.parse(msg.web_app_data.data);
-                bot.sendMessage(chatID, "Спасибо за заявку.\nНаш менеджер свяжется с Вами в ближайшее время!");
-                sendMail(newData.name, newData.phone, newData.comment);
-
-            } catch(e) {
-                console.log(e);
-            }
+            const newData = JSON.parse(msg.web_app_data.data);
+            bot.sendMessage(chatID, "Спасибо за заявку.\nНаш менеджер свяжется с Вами в ближайшее время!");
+            sendMail(newData.name, newData.phone, newData.comment);
         }
     })
 
