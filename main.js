@@ -5,13 +5,6 @@ const Nodemailer = require("nodemailer");
 const token = "5946888409:AAEmPbBvsoBEf-IWALp3iBWaThjS33G7aJQ";
 const url = "https://famous-sfogliatella-4b46e3.netlify.app/";
 
-const test = {
-    reply_markup: {
-        keyboard:[
-            [{text: "Заполните форму", web_app: {url}}]
-        ]
-    }
-}
 
 const bot = new Bot(token, {polling: true});
 
@@ -28,13 +21,13 @@ function start() {
         const chatID = msg.chat.id;
 
         if (msg.text === "/start") {
-            bot.sendMessage(chatID, `Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.`, createKeyboard([{text: "Согласен", callback_data: "approve"}]));
+            bot.sendMessage(chatID, `Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.`, createKeyboard(inline_keyboard, [{text: "Согласен", callback_data: "approve"}]));
         }
 
         if (msg.web_app_data.data) {
             try{
                 const newData = JSON.parse(msg.web_app_data.data);
-                bot.sendMessage(chatID, "Спасибо за заявку.\n" + newData.name + newData.phone + newData.comment);
+                bot.sendMessage(chatID, "Спасибо за заявку.\nНаш менеджер свяжется с Вами в ближайшее время!");
                 sendMail(newData.name, newData.phone, newData.comment);
 
             } catch(e) {
@@ -47,7 +40,7 @@ function start() {
         chatID = msg.message.chat.id;
 
         if (msg.data === "approve") {
-            bot.sendMessage(chatID, `Выберите категорию`, createKeyboard(
+            bot.sendMessage(chatID, `Выберите категорию`, createKeyboard(inline_keyboard,
                 [{text: "Оставить заявку на прием", callback_data: "appointment"}],
                 [{text: "Наши врачи", callback_data: "doctors"}],
                 [{text: "Цены", callback_data: "prices"}], 
@@ -57,16 +50,16 @@ function start() {
         }
 
         if (msg.data === "appointment") {
-            bot.sendMessage(chatID, "Заполните форму по ссылке", test)
+            bot.sendMessage(chatID, "Заполните форму по ссылке", createKeyboard(keyboard, [{text: "Заполните форму", web_app: {url}}]))
         }
 
     })
 }
 
-function createKeyboard(...args) {
+function createKeyboard(type, ...args) {
     return ({
         reply_markup: {
-            inline_keyboard: args
+            type: args
         }
     });
 }
