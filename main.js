@@ -91,7 +91,7 @@ async function sendStartMessage(chatID) {
 }
 
 async function sendMenu(chatID) {
-    bot.sendMessage(chatID, `Выберите категорию`, createInlineKeyboard([
+    await bot.sendMessage(chatID, `Выберите категорию`, createInlineKeyboard([
         [{text: "Наши врачи", callback_data: "doctors"}],
         [{text: "Цены", callback_data: "prices"}],
         [{text: "Акции и скидки", callback_data: "discounts"}],
