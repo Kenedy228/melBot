@@ -3,14 +3,7 @@ const db = require("./db");
 const Nodemailer = require("nodemailer");
 require("dotenv").config();
 
-
-const token = process.env.TELEGRAMTOKEN;
-const appointmentURL = process.env.APPOINTMENTURL;
-const reviewURL = process.env.REVIEWURL;
-
-const sticker = "https://tlgrm.ru/_/stickers/d43/740/d4374010-6842-3710-b8f0-115b0c414216/1.webp";
-
-const bot = new Bot(token, {polling: true});
+const bot = new Bot(process.env.TELEGRAMTOKEN, {polling: true});
 
 function start() {
     bot.on('message', async (msg) => {
@@ -46,8 +39,8 @@ function start() {
         if (msg.data === "approve") {
             await sendMenu(chatID);
             await bot.sendMessage(chatID, "Для офорлмения заявки на прием заполните форму, нажав на кнопку 'Оставить заявку' снизу.", createReplyKeyboard(
-                [[{text: "Оставить заявку", web_app: {url: appointmentURL}}],
-                    [{text: "Оставить отзыв", web_app: {url: reviewURL}}],
+                [[{text: "Оставить заявку", web_app: {url: process.env.APPOINTMENTURL}}],
+                    [{text: "Оставить отзыв", web_app: {url: process.env.REVIEWURL}}],
                     ["Меню"]]));
             addUser(msg);
         }
@@ -56,24 +49,16 @@ function start() {
             sendDoctors(chatID);
         }
 
-        if (msg.data === "schedule") {
-            sendSchedule(chatID);
-        }
-
         if (msg.data === "prices") {
             sendType(chatID);
         }
 
         if (msg.data.match(/type/)) {
-            sendPrice(chatID, msg.data.slice(4));
+            sendPrice(chatID, msg.data.slice(process.env.SLICEPARAM));
         }
 
         if (msg.data === "discounts") {
             sendDiscounts(chatID);
-        }
-
-        if (msg.data === "review") {
-            getReview(chatID);
         }
 
         if (msg.data === "info") {
@@ -100,7 +85,7 @@ function createReplyKeyboard(...args) {
 }
 
 async function sendStartMessage(chatID) {
-    await bot.sendSticker(chatID, sticker);
+    await bot.sendSticker(chatID, process.env.STICKER);
     await bot.sendMessage(chatID, "Здравствуйте! Рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ\n");
     await bot.sendMessage(chatID, `Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.`, createInlineKeyboard([[{text: "Согласен", callback_data: "approve"}]]));
 }
