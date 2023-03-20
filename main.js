@@ -86,8 +86,8 @@ function createReplyKeyboard(...args) {
 
 async function sendStartMessage(chatID, firstname = "", lastname = "") {
     await bot.sendSticker(chatID, process.env.STICKER);
-    await bot.sendMessage(chatID, `Здравствуйте, ${firstname} ${lastname}!\nМы рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ🤗\n`);
-    await bot.sendMessage(chatID, `Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.`, createInlineKeyboard([[{text: "Согласен", callback_data: "approve"}]]));
+    await bot.sendMessage(chatID, `Здравствуйте, <b>${firstname} ${lastname}</b>!\nМы рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ🤗`, {parse_mode: "HTML"});
+    await bot.sendMessage(chatID, "Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.", createInlineKeyboard([[{text: "Согласен", callback_data: "approve"}]]));
 }
 
 async function sendMenu(chatID) {
