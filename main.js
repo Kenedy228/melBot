@@ -1,16 +1,16 @@
 const Bot = require("node-telegram-bot-api");
 const db = require("./db");
 const Nodemailer = require("nodemailer");
+require("dotenv").config();
 
 
-const token = "5946888409:AAEmPbBvsoBEf-IWALp3iBWaThjS33G7aJQ";
-const appointmentURL = "https://famous-sfogliatella-4b46e3.netlify.app/";
-const reviewURL = "https://polite-lokum-847fef.netlify.app/";
+const token = process.env.TELEGRAMTOKEN;
+const appointmentURL = process.env.APPOINTMENTURL;
+const reviewURL = process.env.REVIEWURL;
 
 const sticker = "https://tlgrm.ru/_/stickers/d43/740/d4374010-6842-3710-b8f0-115b0c414216/1.webp";
 
 const bot = new Bot(token, {polling: true});
-
 
 function start() {
     bot.on('message', async (msg) => {
