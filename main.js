@@ -10,7 +10,7 @@ function start() {
         const chatID = msg.chat.id;
 
         if (msg.text === "/start") {
-            sendStartMessage(chatID);
+            sendStartMessage(chatID, msg.chat.first_name, msg.chat.last_name);
         }
 
         if (msg.text === "Меню") {
@@ -84,9 +84,9 @@ function createReplyKeyboard(...args) {
     });
 }
 
-async function sendStartMessage(chatID) {
+async function sendStartMessage(chatID, firstname = "", lastname = "") {
     await bot.sendSticker(chatID, process.env.STICKER);
-    await bot.sendMessage(chatID, "Здравствуйте! Рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ\n");
+    await bot.sendMessage(chatID, `Здравствуйте, ${firstname} ${lastname}!\nМы рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ🤗\n`);
     await bot.sendMessage(chatID, `Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.`, createInlineKeyboard([[{text: "Согласен", callback_data: "approve"}]]));
 }
 
@@ -101,6 +101,7 @@ async function sendMenu(chatID) {
 
 async function sendDoctors(chatID) {
     let doctorsArray = [];
+    await bot.sendMessage(chatID, "В нашей клинике работают профессионалы, минимальный опыт работы которых 15 лет!")
     await db.client.query("SELECT * FROM doctors", (err, res) => {
         if (err) console.log(err);
         for (let value of res.rows) {
