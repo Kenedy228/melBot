@@ -86,7 +86,7 @@ function createReplyKeyboard(...args) {
 
 async function sendStartMessage(chatID, firstname = "", lastname = "") {
     await bot.sendSticker(chatID, process.env.STICKER);
-    await bot.sendMessage(chatID, `Здравствуйте, <b>${firstname} ${lastname}</b>!\nМы рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ🤗`, {parse_mode: "HTML"});
+    await bot.sendMessage(chatID, `Здравствуйте, ${firstname} ${lastname}!\nМы рады приветствовать Вас в чат-боте авторской стоматологии МЕЛ🤗`, {parse_mode: "HTML"});
     await bot.sendMessage(chatID, "Для дальнейшего пользования чат-ботом необходимо дать Ваше согласие на обработку персональных данных.", createInlineKeyboard([[{text: "Согласен", callback_data: "approve"}]]));
 }
 
@@ -182,20 +182,20 @@ async function sendAllDiscounts(chatID) {
 
 async function sendMail(type, ...args) {
     let transporter = Nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        post: 465,
-        secure: true,
+        host: process.env.HOST,
+        post: process.env.POST,
+        secure: process.env.SECURE,
         auth: {
-            user: "zhuravlevdv2004@gmail.com",
-            pass: "kxqhctlbhgixyfex"
+            user: process.env.USER,
+            pass: process.env.PASSWORD
         }
     });
 
     if (type === "Запись") {
         let [name, phone, comment] = args;
         let info = await transporter.sendMail({
-            from: "TELEGRAM BOT <zhuravlevdv2004@gmail.com>",
-            to: "zhuravleffdanilka2004@mail.ru",
+            from: "TELEGRAM BOT",
+            to: process.env.TO,
             subject: 'запись на прием',
             text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
         });
@@ -204,8 +204,8 @@ async function sendMail(type, ...args) {
     } else if (type === "Отзыв") {
         let [name, comment] = args;
         let info = await transporter.sendMail({
-            from: "TELEGRAM BOT <zhuravlevdv2004@gmail.com>",
-            to: "zhuravleffdanilka2004@mail.ru",
+            from: "TELEGRAM BOT",
+            to: process.env.TO,
             subject: 'отзыв',
             text: `ФИО пациента: ${name}\nОтзыв: ${comment}`
         });
