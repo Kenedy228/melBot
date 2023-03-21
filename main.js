@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const bot = new Bot(process.env.TELEGRAMTOKEN, {polling: true});
 
-function start() {
+function stadwart() {
     bot.on('message', async (msg) => {
         const chatID = msg.chat.id;
 
