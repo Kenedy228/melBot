@@ -3,7 +3,7 @@ const db = require("./db");
 const Nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const bot = new Bot(process.env.TELEGRAMTOKEN, {polling: true});
+const bot = new Bot("5946888409:AAEmPbBvsoBEf-IWALp3iBWaThjS33G7aJQ", {polling: true});
 
 function start() {
     bot.on('message', async (msg) => {
