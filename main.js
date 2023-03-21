@@ -54,7 +54,7 @@ function start() {
         }
 
         if (msg.data.match(/type/)) {
-            sendPrice(chatID, msg.data.slice(process.env.SLICEPARAM));
+            sendPrice(chatID, msg.data.slice(4));
         }
 
         if (msg.data === "discounts") {
