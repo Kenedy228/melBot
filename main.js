@@ -181,21 +181,23 @@ async function sendAllDiscounts(chatID) {
 }
 
 async function sendMail(type, ...args) {
+
     let transporter = Nodemailer.createTransport({
-        host: process.env.HOST,
-        port: process.env.POST,
-        secure: process.env.SECURE,
+        pool: process.env.SECUREMAIL,
+        host: process.env.HOSTMAIL,
+        port: process.env.PORTMAIL,
         auth: {
-            user: process.env.USER,
-            pass: process.env.PASSWORD
+            user: process.env.USERMAIL,
+            pass: process.env.PASSWORDMAIL,
         }
     });
 
     if (type === "Запись") {
         let [name, phone, comment] = args;
+
         let info = await transporter.sendMail({
-            from: process.env.HOST,
-            to: process.env.TO,
+            from: process.env.USERMAIL,
+            to: process.env.TOMAIL,
             subject: 'запись на прием',
             text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
         });
@@ -204,8 +206,8 @@ async function sendMail(type, ...args) {
     } else if (type === "Отзыв") {
         let [name, comment] = args;
         let info = await transporter.sendMail({
-            from: "TELEGRAM BOT",
-            to: process.env.TO,
+            from: process.env.USERMAIL,
+            to: process.env.TOMAIL,
             subject: 'отзыв',
             text: `ФИО пациента: ${name}\nОтзыв: ${comment}`
         });
