@@ -183,7 +183,7 @@ async function sendAllDiscounts(chatID) {
 async function sendMail(type, ...args) {
     let transporter = Nodemailer.createTransport({
         host: process.env.HOST,
-        post: process.env.POST,
+        port: process.env.POST,
         secure: process.env.SECURE,
         auth: {
             user: process.env.USER,
@@ -194,7 +194,7 @@ async function sendMail(type, ...args) {
     if (type === "Запись") {
         let [name, phone, comment] = args;
         let info = await transporter.sendMail({
-            from: "TELEGRAM BOT",
+            from: process.env.HOST,
             to: process.env.TO,
             subject: 'запись на прием',
             text: `ФИО пациента: ${name}\nНомер телефона пациента: ${phone}\nКомментарий: ${comment}`
