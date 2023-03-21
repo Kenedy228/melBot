@@ -41,7 +41,7 @@ const insertValues = () => {
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Ортодонтическое лечение", "Лечение ортодонтическим трейнером от", 11500])
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Ортодонтическое лечение", "Лечение брекет-системами от", 35000])
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Ортодонтическое лечение", "Лечение нёбным расширителем (БНР) от", 30000])
-    //
+
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Детская стоматология", "Консультация, осмотр", 400])
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Детская стоматология", "Лечение кариеса молочного зуба от", 3000])
     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Детская стоматология", "Лечение кариеса постоянного зуба от", 4500])
@@ -54,8 +54,16 @@ const insertValues = () => {
     // client.query("INSERT INTO types (type) VALUES ($1)", ["Хирургическая стоматология"])
     // client.query("INSERT INTO types (type) VALUES ($1)", ["Ортодонтическое лечение"])
     // client.query("INSERT INTO types (type) VALUES ($1)", ["Детская стоматология"])
+    //
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Ткаченко Виктор Викторович", "стоматолог-терапевт"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Зуева Татьяна Владимировна", "стоматолог-терапевт"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Миногин Владимир Владимирович", "стоматолог-хирург"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Литвинский Антон Геннадьевич", "стоматолог-ортопед"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Базанова Анна Вячеславовна", "стоматолог-терапевт"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Финогеева Анна Валерьевна", "гигиенист стоматологический"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Лисянская Марина Евгеньевна", "стоматолог-ортодонт"])
+    // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Орлова Ольга Анатольевна", " стоматолог-хирург"])
 
-    // client.query("INSERT INTO discounts (title, description) VALUES ($1, $2)", ["Чиста за 2000", "Гига крутая акция"]);
 }
 
 const selectAll = () => {
