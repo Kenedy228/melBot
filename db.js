@@ -1,24 +1,24 @@
-// const {Client} = require('pg');
-// require("dotenv").config();
-//
-// const client = new Client({
-//     host: process.env.HOSTDATABASE,
-//     port: process.env.PORTDATABASE,
-//     user: process.env.USERDATABASE,
-//     password: process.env.PASSWORDDATABASE,
-//     database: process.env.DBDATABASE,
-// })
-//
-// client.connect();
-//
-// const createTable = () => {
-//     client.query('CREATE TABLE IF NOT EXISTS users (id BIGSERIAL PRIMARY KEY, chatid TEXT NOT NULL UNIQUE, role TEXT NOT NULL, firstname TEXT NOT NULL, lastname TEXT NOT NULL)');
-//     client.query('CREATE TABLE IF NOT EXISTS prices (id BIGSERIAL PRIMARY KEY, type TEXT NOT NULL, title TEXT NOT NULL, price BIGINT NOT NULL)');
-//     client.query('CREATE TABLE IF NOT EXISTS types (id BIGSERIAL PRIMARY KEY, type TEXT NOT NULL)');
-//     client.query('CREATE TABLE IF NOT EXISTS doctors (id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL)');
-//     client.query('CREATE TABLE IF NOT EXISTS discounts (id BIGSERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL)');
-// }
-//
+const {Client} = require('pg');
+require("dotenv").config();
+
+const client = new Client({
+    host: process.env.HOSTDATABASE,
+    port: process.env.PORTDATABASE,
+    user: process.env.USERDATABASE,
+    password: process.env.PASSWORDDATABASE,
+    database: process.env.DBDATABASE,
+})
+
+client.connect();
+
+const createTable = () => {
+    client.query('CREATE TABLE IF NOT EXISTS users (id BIGSERIAL PRIMARY KEY, chatid TEXT NOT NULL UNIQUE, role TEXT NOT NULL, firstname TEXT NOT NULL, lastname TEXT NOT NULL)');
+    client.query('CREATE TABLE IF NOT EXISTS prices (id BIGSERIAL PRIMARY KEY, type TEXT NOT NULL, title TEXT NOT NULL, price BIGINT NOT NULL)');
+    client.query('CREATE TABLE IF NOT EXISTS types (id BIGSERIAL PRIMARY KEY, type TEXT NOT NULL)');
+    client.query('CREATE TABLE IF NOT EXISTS doctors (id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL)');
+    client.query('CREATE TABLE IF NOT EXISTS discounts (id BIGSERIAL PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL)');
+}
+
 // const insertValues = () => {
 //     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Терапия", "Кариес от", 4500])
 //     // client.query("INSERT INTO prices (type, title, price) VALUES ($1, $2, $3)", ["Терапия", "Пульпит от", 9000])
@@ -65,16 +65,16 @@
 //     // client.query("INSERT INTO doctors (name, description) VALUES ($1, $2)", ["Орлова Ольга Анатольевна", " стоматолог-хирург"])
 //
 // }
-//
-// const selectAll = () => {
-//
-// }
-//
-// createTable();
-// insertValues();
-// selectAll();
-//
-// module.exports.client = client;
-//
-//
-//
+
+const selectAll = () => {
+
+}
+
+createTable();
+insertValues();
+selectAll();
+
+module.exports.client = client;
+
+
+
