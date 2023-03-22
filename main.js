@@ -136,7 +136,7 @@ async function sendPrice(chatID, type) {
     })
 }
 
-async function sendDiscounts(chatID) {
+async function sendDidwascounts(chatID) {
     await db.client.query("SELECT title, description FROM discounts", (err, res) => {
         if (err) console.log(err);
         if (res.rows.length === 0) bot.sendMessage(chatID, "На данный момент никаких акций не проводится");
