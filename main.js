@@ -38,7 +38,7 @@ function start() {
 
         if (msg.data === "approve") {
             await sendMenu(chatID);
-            await bot.sendMessage(chatID, "Для оформлdwaения заявки на прием заполните форму, нажав на кнопку 'Оставить заявку' снизу.", createReplyKeyboard(
+            await bot.sendMessage(chatID, "Для оформления заявки на прием заполните форму, нажав на кнопку 'Оставить заявку' снизу.", createReplyKeyboard(
                 [[{text: "Оставить заявку", web_app: {url: process.env.APPOINTMENTURL}}],
                     [{text: "Оставить отзыв", web_app: {url: process.env.REVIEWURL}}],
                     ["Меню"]]));
