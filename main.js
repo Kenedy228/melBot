@@ -31,7 +31,7 @@ function start() {
                 await sendMail("Отзыв", receivedData.name, receivedData.comment);
             }
         }
-    })dwa
+    })
 
     bot.on('callback_query', async (msg) => {
         chatID = msg.message.chat.id;
