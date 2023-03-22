@@ -28,7 +28,7 @@ function start() {
                 await sendMail("Запись", receivedData.name, receivedData.phone, receivedData.comment);
             } else if (receivedData.type === "Отзыв") {
                 await bot.sendMessage(chatID, "Спасибо за ваш отзыв.");
-                await sendMail("Отзыв", receivedData.name, receivedData.review);
+                await sendMail("Отзыв", receivedData.name, receivedData.comment);
             }
         }
     })
