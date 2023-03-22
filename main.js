@@ -21,7 +21,7 @@ function start() {
             sendAllDiscounts(chatID);
         }
 
-        if (msg.web_app_data.data) {
+        if (msg?.web_app_data?.data) {
             const receivedData = JSON.parse(msg.web_app_data.data);
             if (receivedData.type === "Запись") {
                 await bot.sendMessage(chatID, "Спасибо за заявку.\nНаш менеджер свяжется с Вами в ближайшее время!");
